@@ -1,10 +1,10 @@
+// Imports
 import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import cors from 'cors';
 import compression from 'compression';
 import morgan from 'morgan';
-
 import errorMiddleware from 'middlewares/error.middleware';
 import Routes from 'interfaces/routes.interface';
 import sequelize from 'database';
