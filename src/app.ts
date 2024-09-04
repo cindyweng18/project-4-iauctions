@@ -46,7 +46,7 @@ class App {
     // Home route
     this.app.get('/', (req: Request, res: Response) => {
       res.send(
-        `<h1>Welcome to the iAuctions API. Visit one of our endpoints to begin</h1>
+        `<h1>Welcome to the iAuctions API. Visit one of our endpoints to begin:</h1>
         <ul>
           <li>/signup/</li>
           <li>/login/</li>
