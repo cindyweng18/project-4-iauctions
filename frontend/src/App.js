@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 function App() {
   const [data, setData] = useState({ results: [] });
-  const token = "token is generated after signup or login => find a way to store token secretly!"
+  const token = "token is generated after signup or login => find a way to store token secretly"
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   };
