@@ -53,8 +53,7 @@ class App {
           <li>/users/</li>
           <li>/listings/</li>
           <li>/categories/</li>
-        <ul>
-        `,
+        <ul>`,
       );
     });
   }
