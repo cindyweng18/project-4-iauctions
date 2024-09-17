@@ -1,6 +1,7 @@
 import './App.css';
 import axios from 'axios';
 import React, { useState } from 'react';
+import Footer from './components/footer';
 
 function App() {
   // const [data, setData] = useState({ results: [] });
@@ -22,6 +23,7 @@ function App() {
   // }
 
   return (
+    <>
     <div class="min-h-full">
       <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -189,6 +191,8 @@ function App() {
         </div>
       </main>
     </div>
+    <Footer />
+    </>
   );
 }
 
