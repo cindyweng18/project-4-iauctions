@@ -71,7 +71,6 @@ function App() {
                 </div>
               </div>
             </div>
-
                 <a href="#" class="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Shop Collection</a>
               </div>
             </div>
