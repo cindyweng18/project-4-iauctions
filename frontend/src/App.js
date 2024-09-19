@@ -33,8 +33,8 @@ function App() {
           <div class="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
             <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
               <div class="sm:max-w-lg">
-                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Summer styles are finally here</h1>
-                <p class="mt-4 text-xl text-gray-500">This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care if you live or die.</p>
+                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Level up your collection!</h1>
+                <p class="mt-4 text-xl text-gray-500">Dive into our latest lineup of exclusive anime figures, gaming gear, and digital artwork. Whether you're a seasoned collector or just starting out, Anime Arcade has everything you need to bring your favorite worlds to life.</p>
               </div>
             <div>
         <div class="mt-10">
@@ -43,15 +43,15 @@ function App() {
                 <div class="flex items-center space-x-6 lg:space-x-8">
                   <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                     <div class="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
-                      <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg" alt="" class="h-full w-full object-cover object-center" />
+                      <img src="https://res.cloudinary.com/indonesiadesign/image/upload/f_auto,fl_progressive/ipad_pro_2019_best_table_for_art_and_design.jpg" alt="" class="h-full w-full object-cover object-center" />
                     </div>
                     <div class="h-64 w-44 overflow-hidden rounded-lg">
-                      <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg" alt="" class="h-full w-full object-cover object-center" />
+                      <img src="https://assets.xboxservices.com/assets/f0/8d/f08dfa50-f2ef-4873-bc8f-bcb6c34e48c0.png?n=642227_Hero-Gallery-0_C2_857x676.png" alt="" class="h-full w-full object-cover object-center" />
                     </div>
                   </div>
                   <div class="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                     <div class="h-64 w-44 overflow-hidden rounded-lg">
-                      <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg" alt="" class="h-full w-full object-cover object-center" />
+                      <img src="https://i.ebayimg.com/00/s/MTYwMFgxMTk5/z/zasAAOSwxWdipVtJ/$_57.JPG?set_id=8800005007" alt="" class="h-full w-full object-cover object-center" />
                     </div>
                     <div class="h-64 w-44 overflow-hidden rounded-lg">
                       <img src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg" alt="" class="h-full w-full object-cover object-center" />
@@ -80,6 +80,34 @@ function App() {
         </div>
       </main>
     </div>
+    <div className="container mx-auto py-9 md:py-12 px-4 md:px-6">
+            <div className="flex items-strech justify-center flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 lg:space-x-8">
+                <div className="flex flex-col md:flex-row items-strech justify-between bg-gray-50 py-6 px-6 md:py-12 lg:px-12 md:w-8/12 lg:w-7/12 xl:w-8/12 2xl:w-9/12">
+                    <div className="flex flex-col justify-center md:w-1/2">
+                        <h1 className="text-3xl lg:text-4xl font-semibold text-gray-800">Best Deal</h1>
+                        <p className="text-base lg:text-xl text-gray-800 mt-2">
+                            Save Up to <span className="font-bold">50%</span>
+                        </p>
+                    </div>
+                    <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center md:justify-end">
+                        <img src="https://i.ibb.co/J2BtZdg/Rectangle-56-1.png" alt="" />
+                    </div>
+                </div>
+                <div className="md:w-4/12 lg:w-5/12 xl:w-4/12 2xl:w-3/12 bg-gray-50 py-6 px-6 md:py-0 md:px-4 lg:px-6 flex flex-col justify-center relative">
+                    <div className="flex flex-col justify-center">
+                        <h1 className="text-3xl lg:text-4xl font-semibold text-gray-800">Game Console</h1>
+                        <p className="text-base lg:text-xl text-gray-800">
+                            Save Up to <span className="font-bold">30%</span>
+                        </p>
+                    </div>
+                    <div className="flex justify-end md:absolute md:bottom-4 md:right-4 lg:bottom-0 lg:right-0">
+                        <img src="https://i.ibb.co/rGfP7mp/Rectangle-59-1.png" alt="" className="md:w-20 md:h-20 lg:w-full lg:h-full" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     <Footer />
     </>
   );
