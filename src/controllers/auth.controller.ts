@@ -12,13 +12,13 @@ class AuthController {
 
     try {
       const signUpUserData: TokenData = await this.authService.signup(userData);
-      // Set the token in an HttpOnly cookie
-        res.cookie('authToken', signUpUserData.token, {
-           httpOnly: true,
-           secure: process.env.NODE_ENV === 'production',  // Ensures cookie is only sent over HTTPS in production
-           sameSite: 'strict',   // Ensures the cookie is only sent to the same site
-           maxAge: 24 * 60 * 60 * 1000, // Expires after 1 day (24 hours)
-         });
+      // Set the token in an Httponly cookie
+      res.cookie('authToken', signUpUserData.token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Ensures cookie is only sent over HTTPS in production
+        sameSite: 'strict', // Ensures the cookie is only sent to the same site
+        maxAge: 24 * 60 * 60 * 1000, // Expires after 1 day (24 hours)
+      });
       // console.log('Response Headers:', res.getHeaders());
       res.status(201).json({ data: signUpUserData, message: 'signup' });
     } catch (error) {
