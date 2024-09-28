@@ -1,3 +1,4 @@
+// TODO: Change all <a> tags href
 import '../App.css';
 // import axios from 'axios';
 import React from 'react';
@@ -23,7 +24,7 @@ function Login() {
                     <div class="flex items-center justify-between">
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                     <div class="text-sm">
-                        <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                        <a href="/" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                     </div>
                     </div>
                     <div class="mt-2">

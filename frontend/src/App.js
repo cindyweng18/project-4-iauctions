@@ -1,6 +1,7 @@
+// TODO: Change all <a> tags href
 import './App.css';
-import axios from 'axios';
-import React, { useState } from 'react';
+// import axios from 'axios';
+import React from 'react';
 import Footer from './components/footer';
 import Navbar from './components/navbar';
 
@@ -83,7 +84,7 @@ function App() {
                 </div>
               </div>
             </div>
-                <a href="#" class="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Shop Collection</a>
+                <a href="/" class="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700">Shop Collection</a>
               </div>
             </div>
           </div>

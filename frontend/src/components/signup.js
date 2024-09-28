@@ -1,16 +1,37 @@
+// TODO: Change all <a> tags href
 import '../App.css';
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 
 function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-    }
+        try {
+            // Make the signup request to the backend
+            const response = axios.post(
+              'http://localhost:8080/signup/', 
+              { email, password }, 
+              { withCredentials: true } // Ensure cookies are sent and received
+            )
+            // console.log(response)
+            alert(response.status);
+      
+            if (response.status === 201) {
+              // Handle successful signup (e.g., redirect to dashboard)
+              alert('Signup successful');
+            }
+          } catch (error) {
+            // Handle errors (e.g., invalid email/password)
+            // setError('Signup failed. Please try again.');
+            alert('Signup error:', error);
+          }
+        };
+
     return (
         <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -29,18 +50,18 @@ function Signup() {
 
                 <div>
                     <div class="flex items-center justify-between">
-                    <label id="password" name="password" type="password" autoComplete="current-password" for="password" value={password} onChange={(e) => setPassword(e.target.value)} class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
                     <div class="text-sm">
-                        <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                        <a href="/" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
                     </div>
                     </div>
                     <div class="mt-2">
-                    <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                    <input id="password" name="password" type="password" autocomplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                     </div>
                 </div>
 
                 <div>
-                    <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+                    <button type="submit" onClick={handleSubmit} class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
                 </div>
                 </form>
 
