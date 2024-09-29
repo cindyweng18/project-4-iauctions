@@ -23,7 +23,7 @@ class UserService {
     if (isEmpty(userData)) throw new HttpException(400, 'payload is empty');
 
     const exists = (await this.users.count({ where: { email: userData.email } })) > 0;
-    if (exists) throw new HttpException(400, `${userData.email} already exists`);
+    if (exists) throw new HttpException(409, `${userData.email} already exists`);
 
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     const createUserData: User = await this.users.create({ ...userData, password: hashedPassword });

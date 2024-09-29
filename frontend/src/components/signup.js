@@ -8,29 +8,50 @@ function Signup() {
     const [password, setPassword] = useState('');
     // const [error, setError] = useState('');
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-
-        try {
-            // Make the signup request to the backend
-            const response = axios.post(
-              'http://localhost:8080/signup/', 
-              { email, password }, 
-              { withCredentials: true } // Ensure cookies are sent and received
-            )
-            // console.log(response)
-            alert(response.status);
-      
-            if (response.status === 201) {
-              // Handle successful signup (e.g., redirect to dashboard)
-              alert('Signup successful');
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:8080/signup/', { email, password }, {withCredentials: true })
+        .then((response) => {
+            console.log(response.status)
+        }).catch((error) => {
+            if (error.status === 409) {
+                alert("Email Already exist, please log in")
             }
-          } catch (error) {
-            // Handle errors (e.g., invalid email/password)
-            // setError('Signup failed. Please try again.');
-            alert('Signup error:', error);
-          }
-        };
+        })
+        //     if (error.response) {
+        //         console.log(error.response);
+        //         console.log("server responded");
+        //     } else if (error.request) {
+        //         console.log("network error");
+        //     } else {
+        //         console.log(error);
+        //     }
+        //   });
+    }
+
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+
+    //     try {
+    //         // Make the signup request to the backend
+    //         const response = axios.post(
+    //           'http://localhost:8080/signup/', 
+    //           { email, password }, 
+    //           { withCredentials: true } // Ensure cookies are sent and received
+    //         )
+    //         // console.log(response)
+    //         alert(response.status);
+      
+    //         if (response.status === 201) {
+    //           // Handle successful signup (e.g., redirect to dashboard)
+    //           alert('Signup successful');
+    //         }
+    //       } catch (error) {
+    //         // Handle errors (e.g., invalid email/password)
+    //         // setError('Signup failed. Please try again.');
+    //         alert('Signup error:', error);
+    //       }
+    //     };
 
     return (
         <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
