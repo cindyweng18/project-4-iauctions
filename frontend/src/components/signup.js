@@ -6,8 +6,9 @@ import React, { useState } from 'react';
 function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [error, setError] = useState('');
-
+    const [error, setError] = useState('');
+    const [visibility, setVisibility] = useState("invisible flex items-center p-4 mb-1 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400");
+ 
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.post('http://localhost:8080/signup/', { email, password }, {withCredentials: true })
@@ -15,52 +16,33 @@ function Signup() {
             console.log(response.status)
         }).catch((error) => {
             if (error.status === 409) {
-                alert("Email Already exist, please log in")
+                // alert("Email Already exist, please log in")
+                setError("This email is already registered. Please log in or use a different email.")
+                setVisibility("flex items-center p-4 mb-1 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400")
+            } else {
+                alert("error")
             }
         })
-        //     if (error.response) {
-        //         console.log(error.response);
-        //         console.log("server responded");
-        //     } else if (error.request) {
-        //         console.log("network error");
-        //     } else {
-        //         console.log(error);
-        //     }
-        //   });
     }
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-
-    //     try {
-    //         // Make the signup request to the backend
-    //         const response = axios.post(
-    //           'http://localhost:8080/signup/', 
-    //           { email, password }, 
-    //           { withCredentials: true } // Ensure cookies are sent and received
-    //         )
-    //         // console.log(response)
-    //         alert(response.status);
-      
-    //         if (response.status === 201) {
-    //           // Handle successful signup (e.g., redirect to dashboard)
-    //           alert('Signup successful');
-    //         }
-    //       } catch (error) {
-    //         // Handle errors (e.g., invalid email/password)
-    //         // setError('Signup failed. Please try again.');
-    //         alert('Signup error:', error);
-    //       }
-    //     };
 
     return (
         <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
                 <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Create an account</h2>
+            
+            <div class={visibility} role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    <span class="font-medium">Error!</span> {error}
+                </div>
             </div>
-
-            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            </div>
+            <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form class="space-y-6" action="#" method="POST">
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
