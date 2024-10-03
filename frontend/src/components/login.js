@@ -1,9 +1,13 @@
 // TODO: Change all <a> tags href
 import '../App.css';
-// import axios from 'axios';
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 
 function Login() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [visibility, setVisibility] = useState("invisible flex items-center p-4 mb-1 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400");
     return (
         <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
