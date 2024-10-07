@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Route, Routes } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthProvider } from './AuthContext';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Signup from './components/signup';
 import Login from './components/login';
+import { AuthProvider } from './utils';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

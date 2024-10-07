@@ -3,7 +3,7 @@ import '../App.css';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import { handleLogin } from '../utils';
+// import { handleLogin } from '../utils';
 
 function Signup() {
     const [email, setEmail] = useState('');
@@ -17,7 +17,7 @@ function Signup() {
         e.preventDefault()
         axios.post('http://localhost:8080/signup/', { email, password }, {withCredentials: true })
         .then((response) => {
-            handleLogin(setIsLoggedIn)
+            // handleLogin(setIsLoggedIn)
             navigate('/');
         }).catch((error) => {
             if (error.status === 409) {

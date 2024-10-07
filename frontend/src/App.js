@@ -4,8 +4,10 @@ import './App.css';
 import React from 'react';
 import Footer from './components/footer';
 import Navbar from './components/navbar';
+// import { useAuth } from './utils';
 
 function App() {
+  // const { isAuthenticated, login, logout } = useAuth(); 
   const products = [
     {
       id: 1,
@@ -151,7 +153,6 @@ function App() {
         </div>
       </div>
     </div>
-
 
     <Footer />
     </>
