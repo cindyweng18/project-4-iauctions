@@ -3,6 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  // const [userId, setUserId] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
@@ -10,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleLogout = () => {
+    alert("logged out")
     setIsLoggedIn(false);
   };
 

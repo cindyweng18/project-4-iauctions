@@ -3,21 +3,22 @@ import '../App.css';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-// import { handleLogin } from '../utils';
+import { useAuth } from '../utils';
 
 function Signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();  // Initialize useNavigate hook
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { handleLogin} = useAuth(); 
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [visibility, setVisibility] = useState("invisible flex items-center p-4 mb-1 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400");
  
     const handleSubmit = (e) => {
         e.preventDefault()
         axios.post('http://localhost:8080/signup/', { email, password }, {withCredentials: true })
         .then((response) => {
-            // handleLogin(setIsLoggedIn)
+            handleLogin();
             navigate('/');
         }).catch((error) => {
             if (error.status === 409) {
