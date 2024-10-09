@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const handleLogout = () => {
-    alert("logged out")
     setIsLoggedIn(false);
   };
 
