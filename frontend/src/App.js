@@ -7,7 +7,6 @@ import Navbar from './components/navbar';
 // import { useAuth } from './utils';
 
 function App() {
-  // const { isAuthenticated, login, logout } = useAuth(); 
   const products = [
     {
       id: 1,

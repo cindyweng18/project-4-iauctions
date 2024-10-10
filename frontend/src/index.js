@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import Signup from './components/signup';
 import Login from './components/login';
 import { AuthProvider } from './utils';
+import Account from './components/account';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +19,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/account" element={<Account />} />
       </Routes>
     </Router>
     </AuthProvider>
