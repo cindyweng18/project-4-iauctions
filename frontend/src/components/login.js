@@ -17,6 +17,8 @@ function Login() {
         e.preventDefault()
         axios.post('http://localhost:8080/login/', { email, password }, {withCredentials: true })
         .then((response) => {
+            // alert(response.data.data.user.id)
+            // alert(response.data.data.token)
             handleLogin();
             navigate('/');
         }).catch((error) => {

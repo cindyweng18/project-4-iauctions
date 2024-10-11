@@ -22,7 +22,6 @@ function Signup() {
             navigate('/');
         }).catch((error) => {
             if (error.status === 409) {
-                // alert("Email Already exist, please log in")
                 setError("This email is already registered. Please log in or use a different email.")
                 setVisibility("flex items-center p-4 mb-1 text-sm text-red-800 rounded-lg bg-red-50 dark:text-red-400")
             } else {

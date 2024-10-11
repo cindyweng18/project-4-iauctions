@@ -1,8 +1,11 @@
 import React from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
+import { useParams } from "react-router-dom";
 
 const Account = () => {
+    const { id } = useParams();
+    
 
     return (
         <>
