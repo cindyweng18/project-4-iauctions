@@ -18,7 +18,7 @@ function Signup() {
         e.preventDefault()
         axios.post('http://localhost:8080/signup/', { email, password }, {withCredentials: true })
         .then((response) => {
-            handleLogin();
+            handleLogin(response.data.data.token);
             navigate('/');
         }).catch((error) => {
             if (error.status === 409) {

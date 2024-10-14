@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
 import { useParams } from "react-router-dom";
+import { useAuth } from '../utils';
+import axios from "axios";
 
 const Account = () => {
     const { id } = useParams();
+    const { isLoggedIn, token } = useAuth(); 
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            if (isLoggedIn && token) {
+                try {
+                    const response = await axios.get(`http://localhost:8080/user/${id}`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    console.log(response.data)
+                } catch (e) {
+                    console.error("Error fetching user data: ", e)
+                }
+            }
+        };
+
+        fetchUserData();
+    }, [isLoggedIn, token]);
     
 
     return (
