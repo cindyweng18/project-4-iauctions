@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from '../utils';
 import axios from "axios";
 
 const Account = () => {
     const { id } = useParams();
     const { isLoggedIn, token } = useAuth(); 
+    const [userData, setUserData] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -18,10 +20,13 @@ const Account = () => {
                             Authorization: `Bearer ${token}`
                         }
                     });
-                    console.log(response.data)
+                    setUserData(response.data);
                 } catch (e) {
                     console.error("Error fetching user data: ", e)
                 }
+            } else {
+                // Navigate user to error page, not authorized, w/ button to return home and try again
+                navigate('/')
             }
         };
 
@@ -31,6 +36,7 @@ const Account = () => {
 
     return (
         <>
+        {userData}
         <Navbar />
         <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-8">
             <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
