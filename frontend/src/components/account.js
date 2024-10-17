@@ -6,16 +6,18 @@ import { useAuth } from '../utils';
 import axios from "axios";
 
 const Account = () => {
-    const { id } = useParams();
-    const { isLoggedIn, token } = useAuth(); 
+    // const { id } = useParams();
+    const { isLoggedIn } = useAuth(); 
     const [userData, setUserData] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserData = async () => {
+            const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('id');
             if (isLoggedIn && token) {
                 try {
-                    const response = await axios.get(`http://localhost:8080/user/${id}`, {
+                    const response = await axios.get(`http://localhost:8080/user/${userId}`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -26,12 +28,14 @@ const Account = () => {
                 }
             } else {
                 // Navigate user to error page, not authorized, w/ button to return home and try again
-                navigate('/')
+                alert(isLoggedIn)
+                alert(token)
+                // navigate('/')
             }
         };
 
         fetchUserData();
-    }, [isLoggedIn, token]);
+    }, [isLoggedIn, navigate]);
     
 
     return (
