@@ -17,9 +17,9 @@ const Account = () => {
             const userId = localStorage.getItem('id');
             if (isLoggedIn && token) {
                 try {
-                    const response = await axios.get(`http://localhost:8080/user/${userId}`, {
+                    const response = await axios.get(`http://localhost:8080/users/${userId}`, {
                         headers: {
-                            Authorization: `Bearer ${token}`
+                            'Authorization': `Bearer ${token}`
                         }
                     });
                     setUserData(response.data);
@@ -28,9 +28,7 @@ const Account = () => {
                 }
             } else {
                 // Navigate user to error page, not authorized, w/ button to return home and try again
-                alert(isLoggedIn)
-                alert(token)
-                // navigate('/')
+                navigate('/')
             }
         };
 
