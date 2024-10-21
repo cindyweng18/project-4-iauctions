@@ -26,6 +26,7 @@ const Account = () => {
                      setListings(response.data.data.listings)
                     // console.log(response.data.data) //{id: #, email: ''}
                 } catch (e) {
+                    navigate('/not-authorized')
                     console.error("Error fetching user data: ", e)
                 }
             } else {

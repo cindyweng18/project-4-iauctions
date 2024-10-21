@@ -18,23 +18,6 @@ function App() {
       color: 'Black',
     },
   ]
-  // const [data, setData] = useState({ results: [] });
-  // const token = "token is generated after signup or login => find a way to store token secretly!"
-  // const config = {
-  //   headers: { Authorization: `Bearer ${token}` }
-  // };
-
-  // Testing
-  // const handleSubmit = (event) => {
-  //   const fetchData = async () => {
-  //     const result = await axios("http://localhost:8080/categories/", config);
-
-  //     setData(result.data);
-  //   };
-  //   fetchData();
-  //   console.log(data);
-  //   event.preventDefault();
-  // }
 
 
   return (
