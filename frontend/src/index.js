@@ -11,6 +11,7 @@ import { AuthProvider } from './utils';
 import Account from './components/account';
 import NotAuthorized from './components/not-authorized';
 import Categories from './components/categories';
+import Listings from './components/listings';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,7 @@ root.render(
         <Route path="/account/:id" element={<Account />} />
         <Route path="/not-authorized" element={<NotAuthorized />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/:id" element={<Listings />} />
       </Routes>
     </Router>
     </AuthProvider>
