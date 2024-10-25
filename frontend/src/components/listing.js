@@ -2,40 +2,57 @@ import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import Navbar from "./navbar";
 import { useAuth } from "../utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Listing() {
     const navigate = useNavigate();
     const { isLoggedIn } = useAuth(); 
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+    const [description, setDescription] = useState('');
+    const [comments, setComments] = useState([]);
+    const [bids, setBids] = useState([]);
 
     useEffect(() => {
+        const fetchData = async () => {
+            const id = this.props.match.params.id;
+            const token = localStorage.getItem('token');
+            if (isLoggedIn && token) {
+                try {
+                    const response = await axios.get(`http://localhost:8080/listings${id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    setName(response.data.data.title);
+                    setPrice(response.data.data.price);
+                    setDescription(response.data.data.description);
+                    setComments(response.data.data.comments);
+                    setBids(response.data.data.bids);
+                } catch (e) {
+                    console.error("Error fetching listing data: ", e);
+                }
+            } else {
+                navigate('/not-authorized');
+            }
 
-    })
+    }})
 
     return (
         <>
         <Navbar />
         <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
             <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-                <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                <img class="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
-                <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
+                <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+                    <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+                    <img class="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
+                    <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
                 </div>
 
                 <div class="mt-6 sm:mt-8 lg:mt-0">
-                <h1
-                    class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"
-                >
-                    Apple iMac 24" All-In-One Computer, Apple M1, 8GB RAM, 256GB SSD,
-                    Mac OS, Pink
-                </h1>
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"> {name} </h1>
                 <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
-                    <p
-                    class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"
-                    >
-                    $1,249.99
-                    </p>
+                    <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"> {price} </p>
                 </div>
 
                 <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
@@ -95,17 +112,8 @@ export default function Listing() {
 
                 <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
 
-                <p class="mb-6 text-gray-500 dark:text-gray-400">
-                    Studio quality three mic array for crystal clear calls and voice
-                    recordings. Six-speaker sound system for a remarkably robust and
-                    high-quality audio experience. Up to 256GB of ultrafast SSD storage.
-                </p>
+                <p class="mb-6 text-gray-500 dark:text-gray-400"> {description} </p>
 
-                <p class="text-gray-500 dark:text-gray-400">
-                    Two Thunderbolt USB 4 ports and up to two USB 3 ports. Ultrafast
-                    Wi-Fi 6 and Bluetooth 5.0 wireless. Color matched Magic Mouse with
-                    Magic Keyboard or Magic Keyboard with Touch ID.
-                </p>
                 </div>
             </div>
             </div>

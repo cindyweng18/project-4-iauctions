@@ -26,7 +26,7 @@ export default function Listings() {
                     setProducts(response.data.data.listings)
                 } catch (e) {
                     navigate('/not-authorized');
-                    console.error("Error fetching user data: ", e);
+                    console.error("Error fetching category data: ", e);
                 }
             } else {
                 navigate('/not-authorized');
