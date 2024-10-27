@@ -4,6 +4,61 @@ import Navbar from "./navbar";
 import { useAuth } from "../utils";
 import { useEffect, useState } from "react";
 
+const people = [
+    {
+      name: 'Leslie Alexander',
+      email: 'leslie.alexander@example.com',
+      role: 'Co-Founder / CEO',
+      imageUrl:
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      lastSeen: '3h ago',
+      lastSeenDateTime: '2023-01-23T13:23Z',
+    },
+    {
+      name: 'Michael Foster',
+      email: 'michael.foster@example.com',
+      role: 'Co-Founder / CTO',
+      imageUrl:
+        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      lastSeen: '3h ago',
+      lastSeenDateTime: '2023-01-23T13:23Z',
+    },
+    {
+      name: 'Dries Vincent',
+      email: 'dries.vincent@example.com',
+      role: 'Business Relations',
+      imageUrl:
+        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      lastSeen: null,
+    },
+    {
+      name: 'Lindsay Walton',
+      email: 'lindsay.walton@example.com',
+      role: 'Front-end Developer',
+      imageUrl:
+        'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      lastSeen: '3h ago',
+      lastSeenDateTime: '2023-01-23T13:23Z',
+    },
+    {
+      name: 'Courtney Henry',
+      email: 'courtney.henry@example.com',
+      role: 'Designer',
+      imageUrl:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      lastSeen: '3h ago',
+      lastSeenDateTime: '2023-01-23T13:23Z',
+    },
+    {
+      name: 'Tom Cook',
+      email: 'tom.cook@example.com',
+      role: 'Director of Product',
+      imageUrl:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+      lastSeen: null,
+    },
+  ]
+
 export default function Listing() {
     const navigate = useNavigate();
     const { isLoggedIn } = useAuth(); 
@@ -45,20 +100,47 @@ export default function Listing() {
             <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
                 <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                     <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                    <img class="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
-                    <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
-                </div>
+                        <img class="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
+                        <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
+                    </div>
 
-                <div class="mt-8 sm:mt-8 lg:mt-0">
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"> {name} </h1>
-                <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
-                    <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"> {price} </p>
-                </div>
+                    <div class="mt-8 sm:mt-8 lg:mt-0">
+                        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"> {name} </h1>
+                        <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+                            <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"> {price} </p>
+                        </div>
+                        <p class="mb-6 text-gray-500 dark:text-gray-400"> {description} </p>
+                    </div>
 
-                <p class="mb-6 text-gray-500 dark:text-gray-400"> {description} </p>
-
+                    <ul role="list" className="divide-y divide-gray-100">
+                        {people.map((person) => (
+                            <li key={person.email} className="flex justify-between gap-x-6 py-5">
+                            <div className="flex min-w-0 gap-x-4">
+                                <img alt="" src={person.imageUrl} className="h-12 w-12 flex-none rounded-full bg-gray-50" />
+                                <div className="min-w-0 flex-auto">
+                                <p className="text-sm font-semibold leading-6 text-white-900">{person.name}</p>
+                                <p className="mt-1 truncate text-xs leading-5 text-gray-500">{person.email}</p>
+                                </div>
+                            </div>
+                            <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                                <p className="text-sm leading-6 text-gray-900">{person.role}</p>
+                                {person.lastSeen ? (
+                                <p className="mt-1 text-xs leading-5 text-gray-500">
+                                    Last seen <time dateTime={person.lastSeenDateTime}>{person.lastSeen}</time>
+                                </p>
+                                ) : (
+                                <div className="mt-1 flex items-center gap-x-1.5">
+                                    <div className="flex-none rounded-full bg-emerald-500/20 p-1">
+                                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                                    </div>
+                                    <p className="text-xs leading-5 text-gray-500">Online</p>
+                                </div>
+                                )}
+                            </div>
+                            </li>
+                        ))}
+                        </ul>
                 </div>
-            </div>
             </div>
         </section>
         <section class="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
