@@ -62,7 +62,7 @@ const people = [
 export default function Listing() {
     const navigate = useNavigate();
     const { isLoggedIn } = useAuth(); 
-    const [name, setName] = useState('Lorem ipsum odor amet, consectetuer adipiscing elit.');
+    const [name, setName] = useState('Lorem ipsum odor amet.');
     const [price, setPrice] = useState('$599.99');
     const [description, setDescription] = useState('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
     const [comments, setComments] = useState([]);
@@ -96,25 +96,53 @@ export default function Listing() {
     return (
         <>
         <Navbar />
-        <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
+        <section class="py-8 bg-white md:py-16 antialiased">
             <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
                 <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                     <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                        <img class="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
-                        <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
+                        <img class="w-full" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
+                        <img class="w-full hidden" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
                     </div>
 
                     <div class="mt-8 sm:mt-8 lg:mt-0">
-                        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white"> {name} </h1>
+                        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl"> {name} </h1>
                         <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
-                            <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white"> {price} </p>
+                            <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl"> {price} </p>
                         </div>
                         <p class="mb-6 text-gray-500 dark:text-gray-400"> {description} </p>
-                    </div>
-
-                    <ul role="list" className="divide-y divide-gray-100">
+                        <h2 class="text-lg lg:text-2xl font-bold text-gray-900">Bids</h2>
+                        <div>
+                            <label htmlFor="price" className="block text-sm font-medium leading-6 text-gray-900">
+                                Place Bid
+                            </label>
+                            <div className="relative mt-2 rounded-md shadow-sm">
+                                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                                <span className="text-gray-500 sm:text-sm">$</span>
+                                </div>
+                                <input
+                                id="price"
+                                name="price"
+                                type="text"
+                                placeholder="0.00"
+                                className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
+                                <div className="absolute inset-y-0 right-0 flex items-center">
+                                <label htmlFor="currency" className="sr-only">
+                                    Currency
+                                </label>
+                                <button
+                                    class="!absolute right-1 top-1 z-10 select-none rounded bg-pink-500 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:bg-blue-gray-500 peer-placeholder-shown:opacity-50 peer-placeholder-shown:shadow-none"
+                                    type="button"
+                                    data-ripple-light="true"
+                                >
+                                    Place
+                                </button>
+                                </div>
+                            </div>
+                            </div>
+                        <ul role="list" className="divide-y divide-gray-100 overflow-y-auto h-64">
                         {people.map((person) => (
-                            <li key={person.email} className="flex justify-between gap-x-6 py-5">
+                            <li key={person.email} className="flex justify-between gap-x-6 py-4">
                             <div className="flex min-w-0 gap-x-4">
                                 <img alt="" src={person.imageUrl} className="h-12 w-12 flex-none rounded-full bg-gray-50" />
                                 <div className="min-w-0 flex-auto">
@@ -140,23 +168,27 @@ export default function Listing() {
                             </li>
                         ))}
                         </ul>
+                    </div>
+                    
                 </div>
             </div>
         </section>
-        <section class="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased">
-            <div class="max-w-5xl mx-auto px-4">
+        
+                        {/*  <section class="bg-white dark:bg-gray-900 py-8 lg:py-16 antialiased"> */}
+        <section class="bg-white py-8 lg:py-16 antialiased"> 
+            <div class="max-w-4xl mx-auto px-4">
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Discussion</h2>
+                    <h2 class="text-lg lg:text-2xl font-bold text-gray-900">Discussion ({comments.length})</h2>
                 </div>
                 <form class="mb-6">
-                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200">
                         <label for="comment" class="sr-only">Your comment</label>
                         <textarea id="comment" rows="6"
-                            class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                            class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none"
                             placeholder="Write a comment..." required></textarea>
                     </div>
                     <button type="submit"
-                        class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+                        class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800">
                         Post comment
                     </button>
                 </form>
