@@ -13,6 +13,7 @@ import NotAuthorized from './components/not-authorized';
 import Categories from './components/categories';
 import Listings from './components/listings';
 import Listing from './components/listing';
+import PostListing from './components/post-listing';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +29,7 @@ root.render(
         <Route path="/categories" element={<Categories />} />
         <Route path="/categories/:id" element={<Listings />} />
         <Route path="/listings/:id" element={<Listing />} />
+        <Route path="/post-listing" element={<PostListing />} />
       </Routes>
     </Router>
     </AuthProvider>
