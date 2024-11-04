@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils";
 
 export default function PostListing() {
-  const [selected, setSelected] = useState(categories[3])
   const [title, setTitle] = useState('')
   const [price, setPrice] = useState(0.0)
   const [description, setDescription] = useState('')
@@ -16,8 +15,10 @@ export default function PostListing() {
   const [categories, setCategories] = useState([])
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth(); 
+  const [selected, setSelected] = useState(categories[3])
 
   const handleSubmit = (e) => {
+    
     e.preventDefault()
         axios.post('http://localhost:8080/listing/', { title, price, description, categoryId }, {withCredentials: true })
         .then((response) => {
@@ -26,6 +27,7 @@ export default function PostListing() {
             console.log(error)
         })
   }
+
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -65,13 +67,13 @@ export default function PostListing() {
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
-              <label htmlFor="username" className="block text-sm/6 font-medium text-gray-900">
+              <label htmlFor="title" className="block text-sm/6 font-medium text-gray-900">
                 Title
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                   <input
-                    id="title"
+                    id="title" 
                     name="title"
                     type="text"
                     placeholder="Listing Title"
