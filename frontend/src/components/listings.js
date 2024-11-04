@@ -1,13 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "./footer"
 import Navbar from "./navbar"
-import { useAuth } from "../utils";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Listings() {
     const navigate = useNavigate();
-    const { isLoggedIn } = useAuth(); 
     const [categoryName, setCategoryName] = useState('');
     const [products, setProducts] = useState([]);
 
@@ -15,7 +13,7 @@ export default function Listings() {
         const fetchData = async () => {
             const id = this.props.match.params.id;
             const token = localStorage.getItem('token');
-            if (isLoggedIn && token) {
+            if (token) {
                 try {
                     const response = await axios.get(`http://localhost:8080/categories${id}`, {
                         headers: {
@@ -33,7 +31,7 @@ export default function Listings() {
             }
         };
         fetchData();
-    },[isLoggedIn, navigate])
+    },[navigate])
 
     return (
         <>

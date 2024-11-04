@@ -12,10 +12,10 @@ export default function PostListing() {
   const [price, setPrice] = useState(0.0)
   const [description, setDescription] = useState('')
   const [categoryId, setCategoryId] = useState(0)
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([{name: "name"},])
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth(); 
-  const [selected, setSelected] = useState(categories[3])
+  const [selected, setSelected] = useState(categories[0])
 
   const handleSubmit = (e) => {
     

@@ -8,12 +8,11 @@ import { useAuth } from '../utils';
 const Categories = () => {
     const [collections, setCollections] = useState([]);
     const navigate = useNavigate();
-    const { isLoggedIn } = useAuth(); 
 
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
-            if (isLoggedIn && token) {
+            if (token) {
                 try {
                     const response = await axios.get(`http://localhost:8080/categories`, {
                         headers: {
@@ -30,7 +29,7 @@ const Categories = () => {
             }
         };
         fetchData();
-    },[isLoggedIn, navigate])
+    },[navigate])
 
     return (
         <>
@@ -41,9 +40,13 @@ const Categories = () => {
               <h1 className="text-4xl font-bold text-gray-900">Categories</h1>
     
               <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-10">
-                {collections.map(category => (
+                { collections.length === 0 ? 
+                <h5 className="mb-2 text-2xl text-center	font-bold tracking-tight text-gray-900">There's nothing here yet. Start by  
+                  <a href="/post-listing" className="no-underline hover:underline decoration-sky-500/30"> posting a listing!</a></h5>
+                :
+                collections.map(category => (
                   <a href={`/categories/${category.id}`} className="block max-w-sm p-20 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                    <h5 className="mb-2 text-2xl text-center	font-bold tracking-tight text-gray-900 dark:text-white">{category.name}</h5>
+                    <h5 className="mb-2 text-2xl text-center	font-bold tracking-tight text-gray-900">{category.name}</h5>
                   </a>
                 ))}
               </div>

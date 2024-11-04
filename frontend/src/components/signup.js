@@ -4,6 +4,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { useAuth } from '../utils';
+import Navbar from './navbar';
+import Footer from './footer';
 
 function Signup() {
     const [email, setEmail] = useState('');
@@ -33,6 +35,8 @@ function Signup() {
 
 
     return (
+        <>
+        <Navbar />
         <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company" />
@@ -80,6 +84,8 @@ function Signup() {
                 </p>
             </div>
         </div>
+        <Footer />
+        </>
     )
 }
 

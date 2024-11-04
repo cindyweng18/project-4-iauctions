@@ -6,7 +6,6 @@ import { useAuth } from '../utils';
 import axios from "axios";
 
 const Account = () => {
-    const { isLoggedIn } = useAuth(); 
     const [email, setEmail] = useState('');
     const [listings, setListings] = useState([]);
     const navigate = useNavigate();
@@ -15,7 +14,7 @@ const Account = () => {
         const fetchUserData = async () => {
             const token = localStorage.getItem('token');
             const userId = localStorage.getItem('id');
-            if (isLoggedIn && token) {
+            if (token) {
                 try {
                     const response = await axios.get(`http://localhost:8080/users/${userId}`, {
                         headers: {
@@ -36,7 +35,7 @@ const Account = () => {
         };
 
         fetchUserData();
-    }, [isLoggedIn, navigate]);
+    }, [navigate]);
     
 
     return (

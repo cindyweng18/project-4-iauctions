@@ -3,6 +3,7 @@ import Footer from "./footer";
 import Navbar from "./navbar";
 import { useAuth } from "../utils";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const people = [
     {
@@ -68,30 +69,31 @@ export default function Listing() {
     const [comments, setComments] = useState([]);
     const [bids, setBids] = useState([]);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const id = this.props.match.params.id;
-    //         const token = localStorage.getItem('token');
-    //         if (isLoggedIn && token) {
-    //             try {
-    //                 const response = await axios.get(`http://localhost:8080/listings${id}`, {
-    //                     headers: {
-    //                         'Authorization': `Bearer ${token}`
-    //                     }
-    //                 });
-    //                 setName(response.data.data.title);
-    //                 setPrice(response.data.data.price);
-    //                 setDescription(response.data.data.description);
-    //                 setComments(response.data.data.comments);
-    //                 setBids(response.data.data.bids);
-    //             } catch (e) {
-    //                 console.error("Error fetching listing data: ", e);
-    //             }
-    //         } else {
-    //             navigate('/not-authorized');
-    //         }
+    useEffect(() => {
+        const fetchData = async () => {
+            const id = this.props.match.params.id;
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const response = await axios.get(`http://localhost:8080/listings${id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    setName(response.data.data.title);
+                    setPrice(response.data.data.price);
+                    setDescription(response.data.data.description);
+                    setComments(response.data.data.comments);
+                    setBids(response.data.data.bids);
+                } catch (e) {
+                    console.error("Error fetching listing data: ", e);
+                }
+            } else {
+                navigate('/not-authorized');
+            }
 
-    // }})
+    }; fetchData();
+    },[navigate])
 
     return (
         <>
