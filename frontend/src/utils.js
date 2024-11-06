@@ -3,6 +3,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const now = new Date();
   const [userId, setUserId] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState('');
@@ -18,10 +19,14 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const handleLogin = (token, id) => {
+    const item = {
+      value: token,
+      expiry: now.getTime() + (60 * 60 * 60)
+    }
     setIsLoggedIn(true);
     setToken(token);
     setUserId(id);
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', JSON.stringify(item));
     localStorage.setItem('id', id);
   };
 
