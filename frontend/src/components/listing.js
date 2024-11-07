@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import Navbar from "./navbar";
-import { useAuth } from "../utils";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -62,7 +61,6 @@ const people = [
 
 export default function Listing() {
     const navigate = useNavigate();
-    const { isLoggedIn } = useAuth(); 
     const [name, setName] = useState('Lorem ipsum odor amet.');
     const [price, setPrice] = useState('$599.99');
     const [description, setDescription] = useState('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
@@ -72,7 +70,7 @@ export default function Listing() {
     useEffect(() => {
         const fetchData = async () => {
             const id = this.props.match.params.id;
-            const token = localStorage.getItem('token');
+            const token = JSON.parse(localStorage.getItem('token')).value;
             if (token) {
                 try {
                     const response = await axios.get(`http://localhost:8080/listings${id}`, {

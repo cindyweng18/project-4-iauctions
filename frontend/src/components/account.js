@@ -12,7 +12,7 @@ const Account = () => {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const token = localStorage.getItem('token');
+            const token = JSON.parse(localStorage.getItem('token')).value;
             const userId = localStorage.getItem('id');
             if (token) {
                 try {

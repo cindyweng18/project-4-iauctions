@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../utils";
 
 export default function PostListing() {
   const [title, setTitle] = useState('')
@@ -14,24 +13,41 @@ export default function PostListing() {
   const [categoryId, setCategoryId] = useState(0)
   const [categories, setCategories] = useState([{name: "name"},])
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth(); 
   const [selected, setSelected] = useState(categories[0])
+  const token = JSON.parse(localStorage.getItem('token')).value;
+
+  let data = JSON.stringify({
+    "title": title,
+    "price": price,
+    "description": description,
+    "categoryId": categoryId
+  });
+
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'http://localhost:8080/listing',
+    headers: { 
+      'Content-Type': 'application/json', 
+      'Authorization': `Bearer ${token}`
+    },
+    data : data
+  };
 
   const handleSubmit = (e) => {
     
     e.preventDefault()
-        axios.post('http://localhost:8080/listing/', { title, price, description, categoryId }, {withCredentials: true })
-        .then((response) => {
-          console.log(response)
-        }).catch((error) => {
-            console.log(error)
-        })
+    axios.request(config).then((response) => {
+        console.log(response)
+      }).catch((error) => {
+          console.log(error)
+      })
   }
 
 
   useEffect(() => {
     const fetchCategories = async () => {
-        const token = localStorage.getItem('token');
+        
         if (token) {
             try {
                 const response = await axios.get(`http://localhost:8080/categories`, {
@@ -51,7 +67,7 @@ export default function PostListing() {
     };
 
     fetchCategories();
-}, [isLoggedIn, navigate]);
+}, [token, navigate]);
 
 
   return (

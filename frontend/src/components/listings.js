@@ -12,7 +12,7 @@ export default function Listings() {
     useEffect(() => {
         const fetchData = async () => {
             const id = this.props.match.params.id;
-            const token = localStorage.getItem('token');
+            const token = JSON.parse(localStorage.getItem('token')).value;
             if (token) {
                 try {
                     const response = await axios.get(`http://localhost:8080/categories${id}`, {

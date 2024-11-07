@@ -6,7 +6,7 @@ import axios from "axios";
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 
 const Categories = () => {
-    const token = localStorage.getItem('token');
+    const token = JSON.parse(localStorage.getItem('token')).value;
     const [collections, setCollections] = useState([]);
     const [open, setOpen] = useState(false)
     const [categoryName, setCategoryName] = useState('')
@@ -41,7 +41,6 @@ const Categories = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const token = localStorage.getItem('token');
             if (token) {
                 try {
                     const response = await axios.get(`http://localhost:8080/categories`, {
@@ -59,7 +58,7 @@ const Categories = () => {
             }
         };
         fetchData();
-    },[navigate])
+    },[token, navigate])
 
     return (
         <>
