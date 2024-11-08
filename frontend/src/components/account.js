@@ -12,10 +12,11 @@ const Account = () => {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const token = JSON.parse(localStorage.getItem('token')).value;
+            let token = localStorage.getItem('token')
             const userId = localStorage.getItem('id');
             if (token) {
                 try {
+                    token = JSON.parse(token).value
                     const response = await axios.get(`http://localhost:8080/users/${userId}`, {
                         headers: {
                             'Authorization': `Bearer ${token}`

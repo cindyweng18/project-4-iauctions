@@ -14,7 +14,7 @@ export default function PostListing() {
   const [categories, setCategories] = useState([{name: "name"},])
   const navigate = useNavigate();
   const [selected, setSelected] = useState(categories[0])
-  const token = JSON.parse(localStorage.getItem('token')).value;
+  let token = localStorage.getItem('token')
 
   let data = JSON.stringify({
     "title": title,
@@ -50,6 +50,7 @@ export default function PostListing() {
         
         if (token) {
             try {
+                token = JSON.parse(token).value;
                 const response = await axios.get(`http://localhost:8080/categories`, {
                     headers: {
                         'Authorization': `Bearer ${token}`

@@ -7,7 +7,7 @@ const NotAuthorized = () => {
             Page not found
           </h1>
           <p className="mt-6 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-            Sorry, we couldn’t find the page you’re looking for.
+            Sorry, we couldn’t find the page you’re looking for. Please make sure you are logged in to view this page or contact support.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <a

@@ -12,9 +12,10 @@ export default function Listings() {
     useEffect(() => {
         const fetchData = async () => {
             const id = this.props.match.params.id;
-            const token = JSON.parse(localStorage.getItem('token')).value;
+            let token = localStorage.getItem('token')
             if (token) {
                 try {
+                    token = JSON.parse(token).value;
                     const response = await axios.get(`http://localhost:8080/categories${id}`, {
                         headers: {
                             'Authorization': `Bearer ${token}`

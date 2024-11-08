@@ -6,7 +6,7 @@ import axios from "axios";
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 
 const Categories = () => {
-    const token = JSON.parse(localStorage.getItem('token')).value;
+    let token = localStorage.getItem('token');
     const [collections, setCollections] = useState([]);
     const [open, setOpen] = useState(false)
     const [categoryName, setCategoryName] = useState('')
@@ -28,14 +28,19 @@ const Categories = () => {
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      axios.request(config).then((response) => {
-        navigate(`/categories/${response.data.data.id}`)
-        setOpen(false)
-      }).catch((error) => { 
-        console.log(categoryName)
-        console.log(typeof categoryName)
-        alert(error)
-      })
+      try{
+        token = JSON.parse(token).value;
+        axios.request(config).then((response) => {
+          navigate(`/categories/${response.data.data.id}`)
+          setOpen(false)
+        }).catch((error) => { 
+          console.log(categoryName)
+          console.log(typeof categoryName)
+          alert(error)
+        })
+      } catch (e) {
+        console.error(e)
+      }
 
     }
 

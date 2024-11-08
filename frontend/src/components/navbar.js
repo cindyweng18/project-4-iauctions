@@ -2,7 +2,7 @@
 import React from "react";
 
 const Navbar = () => {
-    const token = JSON.parse(localStorage.getItem('token')).value;
+    const token = localStorage.getItem('token');
     const userId = localStorage.getItem('id');
 
     return (
